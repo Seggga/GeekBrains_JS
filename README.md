@@ -1,2 +1,4 @@
-# GeekBrains_JS
-домашки по курсу javascript
+# javascript
+домашки по базовому курсу javascript
+
+
