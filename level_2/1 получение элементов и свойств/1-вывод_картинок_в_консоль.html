@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="https://placeimg.com/100/100/animals" alt="">
+    <img src="https://placeimg.com/100/100/arch" alt="">
+    <img src="https://placeimg.com/100/100/people" alt="">
+
+    <!-- Задание. 
+    1. Сохраните в переменную коллекцию с картинками.
+    2. Пробегитесь по этой коллекции с помощью цикла или forEach
+    и выведите каждую картинку в консоль. -->
+
+    <script>
+
+        "use strict";
+
+        function imageToConsole(imageURL){
+            // Create a new `Image` instance
+            let image = new Image();
+            
+            image.onload = function() {
+                // Inside here we already have the dimensions of the loaded image
+                let style = [    
+                    // Hacky way of forcing image's viewport using `font-size` and `line-height`
+                    'font-size: 1px;',
+                    'line-height: ' + this.height % 2 + 'px;',
+
+                    // Hacky way of forcing a middle/center anchor point for the image
+                    'padding: ' + this.height * .5 + 'px ' + this.width * .5 + 'px;',
+
+                    // Set image dimensions
+                    'background-size: ' + this.width + 'px ' + this.height + 'px;',
+
+                    // Set image URL
+                    'background: url('+ imageURL +');'
+                ].join(' ');
+
+                // notice the space after %c
+                console.log('%c ', style);
+            }
+        
+            // Actually loads the image
+            image.src = imageURL;
+        }
+
+
+        let imagesCol = document.querySelectorAll("img");
+        imagesCol.forEach(image => imageToConsole(image.src));
+
+// только картинки в консоли и на странице отличаются
+// и порядок картинов в консоли рандомный (кто раньше загрузился, тот и пошел в консоль)
+// код взял здесь https://stackoverflow.com/questions/26283936/stylized-console-logging
+
+    </script>
+</body>
+</html>
